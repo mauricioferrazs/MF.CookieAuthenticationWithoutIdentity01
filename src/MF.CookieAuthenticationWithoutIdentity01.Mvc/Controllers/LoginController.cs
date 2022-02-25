@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using MF.CookieAuthenticationWithoutIdentity01.Mvc.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -36,18 +35,13 @@ namespace MF.CookieAuthenticationWithoutIdentity01.Mvc.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Usuário ou senha inválidos");
                 return View(vmLogin);
-            }
-
-            var lstClaim = new List<Claim>()
-            {
-                new Claim(ClaimTypes.Name, vmLogin.Usuario)
-            };       
-
-            var claimsIdentity =
-                new ClaimsIdentity(lstClaim, CookieAuthenticationDefaults.AuthenticationScheme);
-
+            }    
+          
             var claimsPrincipal =
-                new ClaimsPrincipal(claimsIdentity);
+                new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, vmLogin.Usuario)
+                }, CookieAuthenticationDefaults.AuthenticationScheme));
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
