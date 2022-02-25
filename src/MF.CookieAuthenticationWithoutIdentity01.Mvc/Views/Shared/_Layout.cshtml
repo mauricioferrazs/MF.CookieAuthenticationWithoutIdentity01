@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>@ViewData["Title"] - MF.CookieAuthenticationWithoutIdentity01.Mvc</title>
+</head>
+<body>
+    <a asp-action="Index" asp-controller="Home">Home</a>
+    <a asp-action="Logar" asp-controller="Login">Login</a>
+    <a asp-action="Index" asp-controller="SomenteLogado">SomenteLogado</a>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <br />
+        <br />
+        <form asp-action="Deslogar" asp-controller="Login" method="post">
+            <input type="submit" value="Deslogar" /> 
+        </form>
+    }
+
+    @RenderBody()
+</body>
+</html>

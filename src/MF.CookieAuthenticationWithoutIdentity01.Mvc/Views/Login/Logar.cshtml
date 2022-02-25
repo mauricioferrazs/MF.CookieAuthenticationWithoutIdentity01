@@ -1,0 +1,22 @@
+﻿@model MF.CookieAuthenticationWithoutIdentity01.Mvc.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Logar" asp-controller="Login" method="post">
+    <label asp-for="Usuario"></label>
+    <input type="text" asp-for="Usuario" />
+
+    <br />
+    <br />
+
+    <label asp-for="Senha"></label>
+    <input type="text" asp-for="Senha" />
+
+    <br />
+    <br />
+
+    <input type="submit" value="Logar" />
+</form>
